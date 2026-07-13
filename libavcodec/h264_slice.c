@@ -38,6 +38,7 @@
 #include "avcodec.h"
 #include "h264.h"
 #include "h264dec.h"
+#include "h264_wmdetect.h"
 #include "h264data.h"
 #include "h264chroma.h"
 #include "h264_ps.h"
@@ -1641,6 +1642,8 @@ static int h264_field_start(H264Context *h, const H264SliceContext *sl,
     h->explicit_ref_marking = sl->explicit_ref_marking;
 
     h->picture_idr = nal->type == H264_NAL_IDR_SLICE;
+
+    ff_h264_wmdetect_frame_start(h);
 
     if (h->sei.recovery_point.recovery_frame_cnt >= 0) {
         const int sei_recovery_frame_cnt = h->sei.recovery_point.recovery_frame_cnt;

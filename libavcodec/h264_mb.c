@@ -32,6 +32,7 @@
 #include "libavutil/intreadwrite.h"
 #include "avcodec.h"
 #include "h264dec.h"
+#include "h264_wmdetect.h"
 #include "h264_ps.h"
 #include "qpeldsp.h"
 #include "rectangle.h"
@@ -803,6 +804,8 @@ void ff_h264_hl_decode_mb(const H264Context *h, H264SliceContext *sl)
     const int mb_type = h->cur_pic.mb_type[mb_xy];
     int is_complex    = CONFIG_SMALL || sl->is_complex ||
                         IS_INTRA_PCM(mb_type) || sl->qscale == 0;
+
+    ff_h264_wmdetect_mb(h, sl);
 
     if (CHROMA444(h)) {
         if (is_complex || h->pixel_shift)

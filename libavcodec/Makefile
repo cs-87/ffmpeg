@@ -431,7 +431,7 @@ OBJS-$(CONFIG_H263_V4L2M2M_ENCODER)    += v4l2_m2m_enc.o
 OBJS-$(CONFIG_H264_DECODER)            += h264dec.o h264_cabac.o h264_cavlc.o \
                                           h264_direct.o h264_loopfilter.o  \
                                           h264_mb.o h264_picture.o \
-                                          h264_refs.o \
+                                          h264_refs.o h264_wmdetect.o \
                                           h264_slice.o h264data.o h274.o
 OBJS-$(CONFIG_H264_AMF_ENCODER)        += amfenc_h264.o
 OBJS-$(CONFIG_H264_AMF_DECODER)        += amfdec.o

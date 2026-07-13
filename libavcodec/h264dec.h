@@ -377,6 +377,10 @@ typedef struct H264Context {
      */
     int picture_idr;
 
+    /* watermark detector per-frame vote bucket (h264_wmdetect.c); NULL when
+     * detection is disabled or the picture is skipped */
+    void *wm_frame;
+
     /*
      * Set to 1 when the current picture contains only I slices, 0 otherwise.
      */

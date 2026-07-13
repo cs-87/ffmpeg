@@ -44,6 +44,7 @@
 #include "avcodec.h"
 #include "h264.h"
 #include "h264dec.h"
+#include "h264_wmdetect.h"
 #include "h2645_parse.h"
 #include "h264data.h"
 #include "h264_ps.h"
@@ -352,6 +353,9 @@ static av_cold int h264_decode_end(AVCodecContext *avctx)
 {
     H264Context *h = avctx->priv_data;
     int i;
+
+    if (!avctx->internal->is_copy)
+        ff_h264_wmdetect_finalize(avctx);
 
     ff_h264_remove_all_refs(h);
     ff_h264_free_tables(h);
